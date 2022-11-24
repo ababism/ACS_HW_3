@@ -2,9 +2,9 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define max_size 1217
+#define MAX_SIZE 1217
 
-extern float task(int input_number);
+extern double task(int input_number);
 
 int main(int argc, char *argv[]) {
     int input_number = 0;
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     if (argc == 2) {
         time_t t_start = clock();
         int num = atoi(argv[1]);
-        printf("Your number: %s\n", num);
+        printf("Your number: %d\n", num);
         // Timer does not count IO of user
         for (int i = 0; i < 20000000; ++i) {
             task(num);
@@ -45,13 +45,13 @@ int main(int argc, char *argv[]) {
     scanf("%d", &input_type_flag);
     if (input_type_flag == 1) {
         srand(clock());
-        input_number = rand() % max_size;
+        input_number = rand() % MAX_SIZE;
         printf("\nResult: %lf\n", task(input_number));
         return 0;
     }
-    printf("Your number (0 < num <= %d):", max_size);
+    printf("Your number (0 < num <= %d):", MAX_SIZE);
     scanf("%d", &input_number);
-    if (input_number < 1 || input_number > max_size) {
+    if (input_number < 1 || input_number > MAX_SIZE) {
         printf("Incorrect number = %d\n", input_number);
         return 0;
     }
