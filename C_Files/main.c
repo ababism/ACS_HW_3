@@ -21,8 +21,7 @@ int main(int argc, char *argv[]) {
         fclose(input_stream);
 
         FILE *output_stream = fopen(argv[2], "w");
-        printf("Number %d:", input_number);
-        fprintf(output_stream, "%.9lf ", task(input_number));
+        fprintf(output_stream, "%.9lf", task(input_number));
         fclose(output_stream);
         return 0;
     }
