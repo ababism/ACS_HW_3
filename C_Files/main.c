@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
             getchar();
             return 0;
         }
-        //        fgets(ch_arr, sizeof(ch_arr), input_stream);
         fscanf(input_stream, "%d", &input_number);
         fclose(input_stream);
 
