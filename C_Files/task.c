@@ -1,6 +1,14 @@
-#define EPS 0.0001
+#define EPS 0.000000001
+#define ROOT_DEGREE 5
+#define COEFFICIENT 4
 
-double task(int num) {
+double task(const int num) {
+    double xp = num;
+    double xn = num / (double) ROOT_DEGREE;
 
-    return num + EPS;
+    while ((xp - xn) > EPS) {
+        xp = xn;
+        xn = (COEFFICIENT * xp + num / (xp * xp * xp * xp) ) / ROOT_DEGREE;
+    }
+    return xn;
 }

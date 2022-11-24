@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define MAX_SIZE 1217
+#define MAX_NUM 217217217
 
 extern double task(int input_number);
 
@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
         fclose(input_stream);
 
         FILE *output_stream = fopen(argv[2], "w");
-        fprintf(output_stream, "%lf ", task(input_number));
+        printf("Number %d:", input_number);
+        fprintf(output_stream, "%.9lf ", task(input_number));
         fclose(output_stream);
         return 0;
     }
@@ -31,13 +32,13 @@ int main(int argc, char *argv[]) {
         int num = atoi(argv[1]);
         printf("Your number: %d\n", num);
         // Timer does not count IO of user
-        for (int i = 0; i < 20000000; ++i) {
+        for (int i = 0; i < 10000000; ++i) {
             task(num);
         }
         time_t t_end = clock();
 
         printf("Time: %d ms\n", (int) (difftime(t_end, t_start)) / 1000);
-        printf("Result: %lf\n", task(num));
+        printf("Result: %.9lf\n", task(num));
         return 0;
     }
     printf("Random (enter 1) or manual input (enter != 1):");
@@ -45,16 +46,17 @@ int main(int argc, char *argv[]) {
     scanf("%d", &input_type_flag);
     if (input_type_flag == 1) {
         srand(clock());
-        input_number = rand() % MAX_SIZE;
-        printf("\nResult: %lf\n", task(input_number));
+        input_number = rand() % MAX_NUM;
+        printf("Number %d:", input_number);
+        printf("\nResult: %.9lf\n", task(input_number));
         return 0;
     }
-    printf("Your number (0 < num <= %d):", MAX_SIZE);
+    printf("Your number (0 < num <= %d):", MAX_NUM);
     scanf("%d", &input_number);
-    if (input_number < 1 || input_number > MAX_SIZE) {
+    if (input_number < 1 || input_number > MAX_NUM) {
         printf("Incorrect number = %d\n", input_number);
         return 0;
     }
-    printf("\nResult: %lf\n", task(input_number));
+    printf("\nResult: %.9lf\n", task(input_number));
     return 0;
 }
