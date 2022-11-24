@@ -1,0 +1,3 @@
+/Users/abism/Documents/HSE /АВС/ACS_HW_3/C_Files/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/abism/Documents/HSE /АВС/ACS_HW_3/C_Files/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/abism/Documents/HSE /АВС/ACS_HW_3/C_Files/cmake-build-debug/CMakeFiles/C_Files.dir

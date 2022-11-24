@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja "/Users/abism/Documents/HSE /АВС/ACS_HW_3/C_Files"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/abism/Documents/HSE /АВС/ACS_HW_3/C_Files/cmake-build-debug
