@@ -56,6 +56,7 @@ main:
 	add	edx, eax
 	mov	ecx, edx
 	sar	ecx, 27
+	cdq
 	sub	ecx, edx
 	mov	edx, ecx
 	imul	edx, edx, 217217217
