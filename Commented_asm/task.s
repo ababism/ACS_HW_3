@@ -20,7 +20,7 @@ task:
 	movsd	xmm0, QWORD PTR -16[rbp]	# xmm0 = new_root
 	movsd	QWORD PTR -8[rbp], xmm0	# prev_root = new_root;
 #	new_root = (COEFFICIENT * prev_root + num / (prev_root * prev_root * prev_root * prev_root) ) / ROOT_DEGREE;
-	movsd	xmm1, QWORD PTR -8[rbp]	# tmp97, prev_root
+	movsd	xmm1, QWORD PTR -8[rbp]	# xmm1, prev_root
 	movsd	xmm0, QWORD PTR .LC1[rip]	# xmm0 = COEFFICIENT
 	movapd	xmm2, xmm1
 	mulsd	xmm2, xmm0	# COEFFICIENT * prev_root
