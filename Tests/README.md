@@ -1,6 +1,7 @@
 
 ## Тесты
-
+<img width="758" alt="image" src="https://user-images.githubusercontent.com/111705295/204094192-634251c0-3e11-47a8-ab0f-f9219dc32689.png">
+ИСпользуя wolframalpha.com
 # Unmodded
 ### Тесты:
 
