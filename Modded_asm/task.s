@@ -15,8 +15,7 @@ task:
 	movsd	xmm8, xmm0
 	jmp	.L2
 .L3:
-	movsd	xmm0, xmm8
-	movsd	xmm7, xmm0
+	movsd	xmm7, xmm8
 	movsd	xmm1, xmm7
 	movsd	xmm0, QWORD PTR .LC1[rip]
 	movapd	xmm2, xmm1

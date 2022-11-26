@@ -45,6 +45,15 @@ QWORD PTR -16[rbp] = xmm8 (new_root)
 
 **task.s**
 ``` assembly
+movsd	xmm0, xmm8
+movsd	xmm7, xmm0
+```
+** Стало **
+``` assembly
+movsd	xmm7, xmm8
+```
+**task.s**
+``` assembly
 mov	rdx, QWORD PTR -16[rbp]
 mov	rax, QWORD PTR -8[rbp]
 mov	rsi, rdx
