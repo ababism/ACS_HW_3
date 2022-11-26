@@ -6,10 +6,10 @@
 task:
 	push	rbp
 	mov	rbp, rsp
-	mov	DWORD PTR -20[rbp], edi
-	cvtsi2sd	xmm0, DWORD PTR -20[rbp]
+	mov	r12d, edi
+	cvtsi2sd	xmm0, r12d
 	movsd	QWORD PTR -8[rbp], xmm0
-	cvtsi2sd	xmm0, DWORD PTR -20[rbp]
+	cvtsi2sd	xmm0, r12d
 	movsd	xmm1, QWORD PTR .LC0[rip]
 	divsd	xmm0, xmm1
 	movsd	QWORD PTR -16[rbp], xmm0
@@ -21,7 +21,7 @@ task:
 	movsd	xmm0, QWORD PTR .LC1[rip]
 	movapd	xmm2, xmm1
 	mulsd	xmm2, xmm0
-	cvtsi2sd	xmm1, DWORD PTR -20[rbp]
+	cvtsi2sd	xmm1, r12d
 	movsd	xmm0, QWORD PTR -8[rbp]
 	mulsd	xmm0, xmm0
 	mulsd	xmm0, QWORD PTR -8[rbp]
