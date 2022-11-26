@@ -15,7 +15,7 @@
 
 
 ## task:
-### double task(const int num)
+### double task(num)
 * num: -20
 * double prev_root: -8
 * double new_root: -16
