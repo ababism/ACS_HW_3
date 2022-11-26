@@ -37,6 +37,7 @@ i[-4] --> r14d
 ### task.s
 ``` assembly
 DWORD PTR -20[rbp] = r12d
+QWORD PTR -8[rbp] = xmm7 (prev_root)
 ```
 
 ### Убраны присваивания, не влияющие на логику программы:
