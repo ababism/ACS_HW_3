@@ -12,10 +12,10 @@ task:
 	cvtsi2sd	xmm0, r12d
 	movsd	xmm1, QWORD PTR .LC0[rip]
 	divsd	xmm0, xmm1
-	movsd	QWORD PTR -16[rbp], xmm0
+	movsd	xmm8, xmm0
 	jmp	.L2
 .L3:
-	movsd	xmm0, QWORD PTR -16[rbp]
+	movsd	xmm0, xmm8
 	movsd	xmm7, xmm0
 	movsd	xmm1, xmm7
 	movsd	xmm0, QWORD PTR .LC1[rip]
@@ -31,13 +31,13 @@ task:
 	addsd	xmm0, xmm2
 	movsd	xmm1, QWORD PTR .LC0[rip]
 	divsd	xmm0, xmm1
-	movsd	QWORD PTR -16[rbp], xmm0
+	movsd	xmm8, xmm0
 .L2:
 	movsd	xmm0, xmm7
-	subsd	xmm0, QWORD PTR -16[rbp]
+	subsd	xmm0, xmm8
 	comisd	xmm0, QWORD PTR .LC2[rip]
 	ja	.L3
-	movsd	xmm0, QWORD PTR -16[rbp]
+	movsd	xmm0, xmm8
 	pop	rbp
 	ret
 	.size	task, .-task

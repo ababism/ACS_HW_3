@@ -38,6 +38,7 @@ i[-4] --> r14d
 ``` assembly
 DWORD PTR -20[rbp] = r12d
 QWORD PTR -8[rbp] = xmm7 (prev_root)
+QWORD PTR -16[rbp] = xmm8 (new_root)
 ```
 
 ### Убраны присваивания, не влияющие на логику программы:
