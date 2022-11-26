@@ -1,35 +1,33 @@
 	.file	"main.c"
 	.intel_syntax noprefix
-
 	.text
 	.section	.rodata
+	.align 8
 .LC0:
+	.string	"Generated number: %d; answer in output file\n"
+.LC1:
+	.string	"w"
+.LC2:
+	.string	"%.9lf"
+.LC3:
 	.string	"r"
 	.align 8
-.LC1:
-	.string	"Could not open file. Press any key to exit"
-.LC2:
-	.string	"w"
-.LC3:
-	.string	"%s "
 .LC4:
-	.string	"String: %s\n"
+	.string	"Could not open file. Press any key to exit"
 .LC5:
-	.string	"Time: %d ms\n"
-.LC6:
-	.string	"Result: %s\n"
-	.align 8
-.LC7:
-	.string	"Random (enter 1) or manual input (enter != 1):"
-.LC8:
 	.string	"%d"
-	.align 8
+.LC6:
+	.string	"Your number: %d\n"
+.LC7:
+	.string	"Time: %d ms\n"
+.LC8:
+	.string	"Result: %.9lf\n"
 .LC9:
-	.string	"Input length (0 < length <= %d):"
+	.string	"Your number (0 < num <= %d):"
 .LC10:
-	.string	"Incorrect length = %d\n"
+	.string	"Incorrect number = %d\n"
 .LC11:
-	.string	"\nResult: %s\n"
+	.string	"\nResult: %.9lf\n"
 	.text
 	.globl	main
 	.type	main, @function
@@ -37,176 +35,204 @@ main:
 	endbr64	
 	push	rbp
 	mov	rbp, rsp
-	sub	rsp, 304	# stack
-	mov	DWORD PTR -292[rbp], edi	# argc = edi: -292 (first argument)
-	mov	QWORD PTR -304[rbp], rsi	# argv: -304
-# ./main.c:13:     ch_arr[max_size] = '\0';
-	mov	BYTE PTR -55[rbp], 0	# ch_arr[max_size] = '\0'
-# ./main.c:15:     if (argc == 3) {
-	cmp	DWORD PTR -292[rbp], 3	# argc cmp 3
-	jne	.L2	#,
-	mov	rax, QWORD PTR -304[rbp]	# rax, argv
-	add	rax, 8	# argv[1]
-	mov	rax, QWORD PTR [rax]
-	lea	rsi, .LC0[rip]
-	mov	rdi, rax
-	call	fopen@PLT	# fopen(argv[1], "r");
-	mov	QWORD PTR -32[rbp], rax	# input_stream = rax (result of fopen)
-# ./main.c:17:         if (input_stream == NULL) {
-	cmp	QWORD PTR -32[rbp], 0	# input_stream cmp with NULL
-	jne	.L3	#,
-	lea	rdi, .LC1[rip]	# "Could not open file. Press any key to exit" first argument of printf
-	mov	eax, 0
-	call	printf@PLT	#  printf("Could not open file. Press any key to exit");
-	call	getchar@PLT	#
-	mov	eax, 0	# return 0
-	jmp	.L12	#
-.L3:
-	mov	rdx, QWORD PTR -32[rbp]	# input_stream third argument of fgets
-	lea	rax, -272[rbp]	# ch_arr: -272
-	mov	esi, 218	# sizeof(ch_arr) sencond argument of fgets
-	mov	rdi, rax	# ch_arr first argument of fgets
-	call	fgets@PLT	# fgets(ch_arr, sizeof(ch_arr), input_stream);
-	mov	rax, QWORD PTR -32[rbp]	# input_stream: -32
-	mov	rdi, rax	# input_stream first argument of fclose
-	call	fclose@PLT	close(input_stream);
-
-	mov	rax, QWORD PTR -304[rbp]	# argv
-	add	rax, 16	# argv[2]
-	mov	rax, QWORD PTR [rax]
-	lea	rsi, .LC2[rip]	# "w" second argument of fopen
-	mov	rdi, rax	# argv[2] (string) first argument of fopen
+	sub	rsp, 80	# stack
+	mov	DWORD PTR -68[rbp], edi	# argc = first argument: -68
+	mov	QWORD PTR -80[rbp], rsi	# argv = second argument: -80
+	mov	DWORD PTR -60[rbp], 0	# input_number = 0: -60
+#	if (argc == 3 && argv[1][0] == ':') {
+	cmp	DWORD PTR -68[rbp], 3	# argc == 3
+	jne	.L2	# first condition
+	mov	rax, QWORD PTR -80[rbp]	# rax = argv
+	add	rax, 8	# argv + 8 = &argv[1]
+	mov	rax, QWORD PTR [rax]	# argv[1]
+	movzx	eax, BYTE PTR [rax]	# argv[1][0]
+	cmp	al, 58	# argv[1][0] == ':'
+	jne	.L2	# second condition
+	call	clock@PLT
+	mov	edi, eax	# first arg = clock() res
+	call	srand@PLT	# srand(clock())
+#	input_number = rand() % MAX_NUM;
+	call	rand@PLT	#
+	movsx	rdx, eax	# rdx = res of rand()
+	imul	rdx, rdx, -1641122631
+	shr	rdx, 32
+	add	edx, eax
+	mov	ecx, edx
+	sar	ecx, 27
+	cdq
+	sub	ecx, edx
+	mov	edx, ecx
+	imul	edx, edx, 217217217
+	sub	eax, edx
+	mov	edx, eax
+	mov	DWORD PTR -60[rbp], edx	#  input_number = rand() % MAX_NUM;
+	mov	eax, DWORD PTR -60[rbp]	# rax = input_number
+	mov	esi, eax	# second arg = input_number
+	lea	rdi, .LC0[rip]	# first arg = "Generated number: %d; answer in output file\n"
+	mov	eax, 0	#,
+	call	printf@PLT	# printf("Generated number: %d; answer in output file\n", input_number);
+	mov	rax, QWORD PTR -80[rbp]	# argv
+	add	rax, 16	# argv + 16 = &argv[2]
+	mov	rax, QWORD PTR [rax]	# argv[2]
+	lea	rsi, .LC1[rip]	# second arg = "w"
+	mov	rdi, rax	# first arg = argv[2]
 	call	fopen@PLT	# fopen(argv[2], "w");
-	mov	QWORD PTR -40[rbp], rax	# output_stream = fopen(): -40
-	lea	rax, -272[rbp]	# ch_arr
-	mov	rdi, rax	# ch_arr first argument of task
-	call	task@PLT	# task(ch_arr)
-	mov	rdx, rax	# result of task(ch_arr) third argument of fprintf
-	mov	rax, QWORD PTR -40[rbp]	# rax, output_stream
-	lea	rsi, .LC3[rip]	# "%s"
-	mov	rdi, rax	# output_stream first argument of fprintf
-	mov	eax, 0
-	call	fprintf@PLT	# fprintf(output_stream, "%s ", task(ch_arr));
-	mov	rax, QWORD PTR -40[rbp]	# rax, output_stream
-	mov	rdi, rax	# output_stream first argument of fclose
-	call	fclose@PLT	#  fclose(output_stream);
+	mov	QWORD PTR -16[rbp], rax	# FILE *output_stream = fopen(argv[2], "w"): -16
+# 	fprintf(output_stream, "%.9lf", task(input_number));
+	mov	eax, DWORD PTR -60[rbp]	# eax = input_number
+	mov	edi, eax	# input_number first argument of task()
+	call	task@PLT	# task(input_number)
+	mov	rax, QWORD PTR -16[rbp]	# rax = output_stream
+	lea	rsi, .LC2[rip]	# second arg = "%.9lf"
+	mov	rdi, rax	# first arg = output_stream
+	mov	eax, 1
+	call	fprintf@PLT #  fprintf(output_stream, "%.9lf", task(input_number))
+	mov	rax, QWORD PTR -16[rbp]	# rax = output_stream
+	mov	rdi, rax	# output_stream first argument of fclose()
+	call	fclose@PLT	#   fclose(output_stream);
 	mov	eax, 0	#  return 0;
-	jmp	.L12	#
+	jmp	.L11
 .L2:
-	cmp	DWORD PTR -292[rbp], 2	# argc cmp 2 (argc == 2)
+	cmp	DWORD PTR -68[rbp], 3	#  if (argc == 3)
+	jne	.L4
+	mov	rax, QWORD PTR -80[rbp]	# rax = argv
+	add	rax, 8	# &argv[1]
+	mov	rax, QWORD PTR [rax]	# rax = argvp[1]
+	lea	rsi, .LC3[rip]	# "r" second arg of fopen()
+	mov	rdi, rax	# argv[1] first arg of fopen()
+	call	fopen@PLT	# fopen(argv[1], "r");
+	mov	QWORD PTR -48[rbp], rax	# FILE *input_stream = fopen(argv[1], "r"): -48
+	cmp	QWORD PTR -48[rbp], 0	# if (input_stream == NULL)
 	jne	.L5
-	call	clock@PLT
-	mov	QWORD PTR -16[rbp], rax	# t_start = clock() : -16
-	mov	rax, QWORD PTR -304[rbp]	# rax, argv
-	add	rax, 8	# argv[1]
-	mov	rax, QWORD PTR [rax]
-	mov	rsi, rax	# argv[1] (string) second argument of printf
-	lea	rdi, .LC4[rip]	# "String: %s\n" first argument of printf
+# ./main.c:25:             printf("Could not open file. Press any key to exit");
+	lea	rdi, .LC4[rip]	# "Could not open file. Press any key to exit" first arg
 	mov	eax, 0
-	call	printf@PLT	#  printf("String: %s\n", argv[1]);
+	call	printf@PLT	# printf("Could not open file. Press any key to exit");
+	call	getchar@PLT	# getchar();
+	mov	eax, 0	# return 0;
+	jmp	.L11
+.L5:
+# ./main.c:29:         fscanf(input_stream, "%d", &input_number);
+	lea	rdx, -60[rbp]	# &input_number third arg
+	mov	rax, QWORD PTR -48[rbp]	# rax = input_stream
+	lea	rsi, .LC5[rip]	# "%d" second arg
+	mov	rdi, rax	# input_stream first arg
+	mov	eax, 0
+	call	__isoc99_fscanf@PLT	# fscanf(input_stream, "%d", &input_number)
+# ./main.c:30:         fclose(input_stream);
+	mov	rax, QWORD PTR -48[rbp]	# rax, input_stream
+	mov	rdi, rax	# input_stream firsr arg
+	call	fclose@PLT	# fclose(input_stream);
+# ./main.c:32:         FILE *output_stream = fopen(argv[2], "w");
+	mov	rax, QWORD PTR -80[rbp]	# rax, argv
+	add	rax, 16	# &argv[2]
+	mov	rax, QWORD PTR [rax]	# rax, argv[2]
+	lea	rsi, .LC1[rip]	# "w" second arg
+	mov	rdi, rax	# argv[2] first arg
+	call	fopen@PLT	# fopen(argv[2], "w");
+	mov	QWORD PTR -56[rbp], rax	#  FILE *output_stream = fopen(argv[2], "w"): -56
+	mov	eax, DWORD PTR -60[rbp]	# eax, input_number
+	mov	edi, eax	# input_number first argument of task()
+	call	task@PLT	# task(input_number)
+	mov	rax, QWORD PTR -56[rbp]	# rax, output_stream
+	lea	rsi, .LC2[rip]	# "%.9lf" second arg
+	mov	rdi, rax	# output_stream first arg
+	mov	eax, 1
+	call	fprintf@PLT	# fprintf(output_stream, "%.9lf", task(input_number));
+	mov	rax, QWORD PTR -56[rbp]	# rax, output_stream
+	mov	rdi, rax	# output_stream first arg of fclose
+	call	fclose@PLT	# fclose(output_stream)
+	mov	eax, 0	#  return 0;
+	jmp	.L11
+.L4:
+	cmp	DWORD PTR -68[rbp], 2	# if (argc == 2) {
+	jne	.L6
+	call	clock@PLT	# clock()
+	mov	QWORD PTR -24[rbp], rax	# time_t t_start = clock(): -24
+	mov	rax, QWORD PTR -80[rbp]	# rax, argv
+	add	rax, 8	# &argv[1]
+	mov	rax, QWORD PTR [rax]	# argv[1]
+	mov	rdi, rax	# argv[1] first arg
+	call	atoi@PLT	# atoi(argv[1])
+	mov	DWORD PTR -28[rbp], eax	# int num = atoi(argv[1]): -28
+	mov	eax, DWORD PTR -28[rbp]	# eax, num
+	mov	esi, eax	# num second arg
+	lea	rdi, .LC6[rip]	# "Your number: %d\n" first arg
+	mov	eax, 0
+	call	printf@PLT	# printf("Your number: %d\n", num);
 	mov	DWORD PTR -4[rbp], 0	# i = 0: -4
-	jmp	.L6	# for (int i = 0; i < 20000000; ++i)
-.L7:
-	mov	rax, QWORD PTR -304[rbp]	# rax, argv
-	add	rax, 8	# argv[1]
-	mov	rax, QWORD PTR [rax]
-	mov	rdi, rax	# argv[1] first argument of task(argv[1])
-	call	task@PLT	# task(argv[1])
+	jmp	.L7	#  for (int i = 0; i < 10000000; ++i) {    // Timer does not count IO of user
+.L8:
+	mov	eax, DWORD PTR -28[rbp]	# eax, num
+	mov	edi, eax	# num second arg
+	call	task@PLT	#  task(num);
 	add	DWORD PTR -4[rbp], 1	# ++i
-.L6:
-#	for (int i = 0; i < 20000000; ++i)
-	cmp	DWORD PTR -4[rbp], 19999999	# i cmp 19999999
-	jle	.L7
-	call	clock@PLT
-	mov	QWORD PTR -24[rbp], rax	# t_end = clock(): -24
-	mov	rdx, QWORD PTR -16[rbp]	# tmp120, t_start
-	mov	rax, QWORD PTR -24[rbp]	# tmp121, t_end
-	mov	rsi, rdx	# t_start second argument of difftime
-	mov	rdi, rax	# t_end first argument of difftime
-	call	difftime@PLT	# (difftime(t_end, t_start)
+.L7:
+	cmp	DWORD PTR -4[rbp], 9999999	#  i < 10000000
+	jle	.L8
+	call	clock@PLT	# clock()
+	mov	QWORD PTR -40[rbp], rax	#  time_t t_end = clock(): -40
+# ./main.c:47:         printf("Time: %d ms\n", (int) (difftime(t_end, t_start)) / 1000);
+	mov	rdx, QWORD PTR -24[rbp]	# rdx, t_start
+	mov	rax, QWORD PTR -40[rbp]	# rax, t_end
+	mov	rsi, rdx	# t_start second arg of difftime()
+	mov	rdi, rax	# t_end first arg of difftime()
+	call	difftime@PLT	# difftime(t_end, t_start)
 	cvttsd2si	eax, xmm0
 	movsx	rdx, eax
 	imul	rdx, rdx, 274877907
 	shr	rdx, 32
 	sar	edx, 6
-	sar	eax, 31
+	sar	eax, 31	#
 	sub	edx, eax
-	mov	eax, edx	
-	mov	esi, eax	# (int) difftime(t_end, t_start) / 1000 second argument of printf
-	lea	rdi, .LC5[rip]	# "Time: %d ms\n" first argument of printf
+	mov	eax, edx
+	mov	esi, eax	# (int) (difftime(t_end, t_start)) / 1000 second arg
+	lea	rdi, .LC7[rip]	# "Time: %d ms\n"
 	mov	eax, 0
-	call	printf@PLT	#printf("Time: %d ms\n", (int) (difftime(t_end, t_start)) / 1000);
-	mov	rax, QWORD PTR -304[rbp]	# argv
-	add	rax, 8	# argv[1]
-	mov	rax, QWORD PTR [rax]
-	mov	rdi, rax	# argv[1] first argument of task
-	call	task@PLT	#  task(argv[1])
-	mov	rsi, rax	#  task(argv[1]) second argument of printf
-	lea	rdi, .LC6[rip]	# "Result: %s\n" first argument of printf
+	call	printf@PLT	# printf("Time: %d ms\n", (int) (difftime(t_end, t_start)) / 1000)
+	mov	eax, DWORD PTR -28[rbp]	# eax, num
+	mov	edi, eax	# num first arg of task()
+	call	task@PLT	# task(num)
+	lea	rdi, .LC8[rip]	# "Result: %.9lf\n" first arg of printf
+	mov	eax, 1
+	call	printf@PLT	# printf("Result: %.9lf\n", task(num));
+	mov	eax, 0	# return 0;
+	jmp	.L11	#
+.L6:
+	mov	esi, 217217217	# MAX_NUM second arg
+	lea	rdi, .LC9[rip]	# "Your number (0 < num <= %d):" first arg
 	mov	eax, 0
-	call	printf@PLT	# printf("Result: %s\n", task(argv[1]));
-	mov	eax, 0	#  return 0;
-	jmp	.L12
-.L5:
-	lea	rdi, .LC7[rip]	# first argument of printf
+	call	printf@PLT	# printf("Your number (0 < num <= %d):", MAX_NUM);
+	lea	rax, -60[rbp]	# rax, &input_number
+	mov	rsi, rax	# &input_number second arg
+	lea	rdi, .LC5[rip]	# "%d" first arg
 	mov	eax, 0
-	call	printf@PLT	# printf("Random (enter 1) or manual input (enter != 1):");
-	mov	DWORD PTR -276[rbp], 0	# input_type_flag = 0: -276
-	lea	rax, -276[rbp]	# &input_type_flag
-	mov	rsi, rax	# &input_type_flag second argument of scanf
-	lea	rdi, .LC8[rip]	# "%d" first argument of scanf
-	mov	eax, 0
-	call	__isoc99_scanf@PLT	# scanf("%d", &input_type_flag);
-	mov	eax, DWORD PTR -276[rbp]
-	cmp	eax, 1	# input_type_flag cmp 1,
-	jne	.L8
-	mov	DWORD PTR -280[rbp], 0	# length = 0: -280
-	mov	esi, 217	# max_size second argument of printf
-	lea	rdi, .LC9[rip]	# "Input length (0 < length <= %d):" first argument of printf
-	mov	eax, 0
-	call	printf@PLT	#  printf("Input length (0 < length <= %d):", max_size);
-	lea	rax, -280[rbp]	# rax, &length
-	mov	rsi, rax	# &length second argument of scanf
-	lea	rdi, .LC8[rip]	# "%d"
-	mov	eax, 0
-	call	__isoc99_scanf@PLT	# scanf("%d", &length);
-	mov	eax, DWORD PTR -280[rbp]	# length
-	test	eax, eax	# length < 1
+	call	__isoc99_scanf@PLT	# scanf("%d", &input_number);
+#	if (input_number < 1 || input_number > MAX_NUM) {
+	mov	eax, DWORD PTR -60[rbp]	# eax, input_number
+	test	eax, eax	# input_number < 1
 	jle	.L9
-	mov	eax, DWORD PTR -280[rbp]	# length
-	cmp	eax, 217	# length > max_size
+	mov	eax, DWORD PTR -60[rbp]	# eax, input_number
+	cmp	eax, 217217217	# input_number > MAX_NUM
 	jle	.L10
 .L9:
-	mov	eax, DWORD PTR -280[rbp]	# eax, length
-	mov	esi, eax	# length
-	lea	rdi, .LC10[rip]	# "Incorrect length = %d\n" first argument of printf
+	mov	eax, DWORD PTR -60[rbp]	# eax, input_number
+	mov	esi, eax	# input_number second arg
+	lea	rdi, .LC10[rip]	# "Incorrect number = %d\n" first arg
 	mov	eax, 0
-	call	printf@PLT	# printf("Incorrect length = %d\n", length);
+	call	printf@PLT	#  printf("Incorrect number = %d\n", input_number);
 	mov	eax, 0	# return 0;
-	jmp	.L12
+	jmp	.L11
 .L10:
-	mov	eax, DWORD PTR -280[rbp]	# length
-	lea	rdx, -272[rbp]	# ch_arr
-	mov	rsi, rdx	# ch_arr second argument of task_random
-	mov	edi, eax	# length first argument of task_random
-	call	task_random@PLT	# task_random(length, ch_arr)
-	mov	rsi, rax	# result of task_random second argument of printf
-	lea	rdi, .LC11[rip]	# "\nResult: %s\n" first argument of printf
-	mov	eax, 0	#,
-	call	printf@PLT	# printf("\nResult: %s\n", task_random(length, ch_arr));
+	mov	eax, DWORD PTR -60[rbp]	# eax, input_number
+	mov	edi, eax	# input_number first arg of task()
+	call	task@PLT	# task(input_number)
+	lea	rdi, .LC11[rip]	# "\nResult: %.9lf\n" first arg
+	mov	eax, 1
+	call	printf@PLT	# printf("\nResult: %.9lf\n", task(input_number));
 	mov	eax, 0	# return 0;
-	jmp	.L12	#
-.L8:
-	lea	rax, -272[rbp]	# ch_arr
-	mov	rdi, rax	# ch_arr first argument of task_manual
-	call	task_manual@PLT	# task_manual(ch_arr)
-	mov	rsi, rax	# result of task_manual second argument of printf
-	lea	rdi, .LC11[rip]	# "\nResult: %s\n" first argument of printf
-	mov	eax, 0
-	call	printf@PLT	# printf("\nResult: %s\n", task_manual(ch_arr));
-	mov	eax, 0	# return 0;
-.L12:
-	leave	# quiting from program
+.L11:
+	leave	
 	ret	
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0"
