@@ -104,7 +104,6 @@ main:
 	mov	QWORD PTR -48[rbp], rax	# FILE *input_stream = fopen(argv[1], "r"): -48
 	cmp	QWORD PTR -48[rbp], 0	# if (input_stream == NULL)
 	jne	.L5
-# ./main.c:25:             printf("Could not open file. Press any key to exit");
 	lea	rdi, .LC4[rip]	# "Could not open file. Press any key to exit" first arg
 	mov	eax, 0
 	call	printf@PLT	# printf("Could not open file. Press any key to exit");
@@ -112,18 +111,15 @@ main:
 	mov	eax, 0	# return 0;
 	jmp	.L11
 .L5:
-# ./main.c:29:         fscanf(input_stream, "%d", &input_number);
 	lea	rdx, -60[rbp]	# &input_number third arg
 	mov	rax, QWORD PTR -48[rbp]	# rax = input_stream
 	lea	rsi, .LC5[rip]	# "%d" second arg
 	mov	rdi, rax	# input_stream first arg
 	mov	eax, 0
 	call	__isoc99_fscanf@PLT	# fscanf(input_stream, "%d", &input_number)
-# ./main.c:30:         fclose(input_stream);
 	mov	rax, QWORD PTR -48[rbp]	# rax, input_stream
 	mov	rdi, rax	# input_stream firsr arg
 	call	fclose@PLT	# fclose(input_stream);
-# ./main.c:32:         FILE *output_stream = fopen(argv[2], "w");
 	mov	rax, QWORD PTR -80[rbp]	# rax, argv
 	add	rax, 16	# &argv[2]
 	mov	rax, QWORD PTR [rax]	# rax, argv[2]
