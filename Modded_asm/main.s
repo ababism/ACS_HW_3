@@ -152,15 +152,15 @@ main:
 	lea	rdi, .LC6[rip]
 	mov	eax, 0
 	call	printf@PLT
-	mov	DWORD PTR -4[rbp], 0
+	mov	r13d, 0
 	jmp	.L7
 .L8:
 	mov	eax, DWORD PTR -28[rbp]
 	mov	edi, eax
 	call	task@PLT
-	add	DWORD PTR -4[rbp], 1
+	add	r13d, 1
 .L7:
-	cmp	DWORD PTR -4[rbp], 9999999
+	cmp	r13d, 9999999
 	jle	.L8
 	call	clock@PLT
 	mov	QWORD PTR -40[rbp], rax
