@@ -5,41 +5,32 @@
 Иcпользуя wolframalpha.com
 
 # Unmodded_asm
-### Тесты:
+## Все тесты сразу
+### Тесты имеют в себе
 
-1. Manual input
-<img width="856" alt="image" src="https://user-images.githubusercontent.com/111705295/201544935-e563cc99-ef1e-4497-9765-1ebdd848fded.png">
+1. Файловый ввод вывод
+2. Таймер
+3. Рандомная генерация (с выводом в файл) + проверка для числа через wolfram
+4. Ручной ввод (ввод вывод с консолью)
+5. Два теста на неккоректное поведение
 
-2. File input
-<img width="1066" alt="image" src="https://user-images.githubusercontent.com/111705295/201544956-7c069cb1-bd1f-464c-b3fc-d74e2d0501d7.png">
-
-3. Random generation
-<img width="988" alt="image" src="https://user-images.githubusercontent.com/111705295/201544987-395d23dc-bca8-440d-a84b-6fcb199daf3e.png">
-
-4. Random generation incorrect lenght
-<img width="814" alt="image" src="https://user-images.githubusercontent.com/111705295/201545062-d3a0c75c-517a-4ddc-8a56-6e724d2e3ad4.png">
-
-5. Cmd arg + Timer
-<img width="1053" alt="image" src="https://user-images.githubusercontent.com/111705295/201545106-a784996e-37f3-4e3e-8e64-3032b610d94d.png">
+<img width="1076" alt="image" src="https://user-images.githubusercontent.com/111705295/204113196-19e8782a-b7c1-430c-b3b8-8cb4d1cc6b4d.png">
 
 
 ----
 # Modded
-### Все тесты сразу:
-<img width="1174" alt="image" src="https://user-images.githubusercontent.com/111705295/201545298-93a8bfa9-9dbe-4383-b950-ccf2175007ce.png">
+## Все тесты сразу:
+### Тесты имеют в себе
 
-### Тесты:
-1. Manual input
+1. Файловый ввод вывод
+2. Таймер
+3. Рандомная генерация (с выводом в файл) + проверка для числа через wolfram
+4. Ручной ввод (ввод вывод с консолью)
+5. Два теста на неккоректное поведение
 
-2. File input
+<img width="1024" alt="image" src="https://user-images.githubusercontent.com/111705295/204113237-5a8433a4-44d8-46cb-8941-c10ef21e0453.png">
 
-3. Random generation
-
-4. Random generation incorrect lenght
-<img width="529" alt="image" src="https://user-images.githubusercontent.com/111705295/201545405-e50b66dc-6803-48e0-8c92-9a71596252e4.png">
-
-5. Cmd arg + Timer
-
+----
 # 7 баллов
 Файлы
 <img width="917" alt="image" src="https://user-images.githubusercontent.com/111705295/201546722-5662fe20-f0a3-484a-95e7-645931654e69.png">
