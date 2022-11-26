@@ -143,20 +143,17 @@ main:
 	mov	QWORD PTR -24[rbp], rax
 	mov	rax, QWORD PTR -80[rbp]
 	add	rax, 8
-	mov	rax, QWORD PTR [rax]
-	mov	rdi, rax
+	mov	rdi,  QWORD PTR [rax]
 	call	atoi@PLT
 	mov	DWORD PTR -28[rbp], eax
-	mov	eax, DWORD PTR -28[rbp]
-	mov	esi, eax
+	mov	esi, DWORD PTR -28[rbp]
 	lea	rdi, .LC6[rip]
 	mov	eax, 0
 	call	printf@PLT
 	mov	r13d, 0
 	jmp	.L7
 .L8:
-	mov	eax, DWORD PTR -28[rbp]
-	mov	edi, eax
+	mov	edi, DWORD PTR -28[rbp]
 	call	task@PLT
 	add	r13d, 1
 .L7:
@@ -164,10 +161,8 @@ main:
 	jle	.L8
 	call	clock@PLT
 	mov	QWORD PTR -40[rbp], rax
-	mov	rdx, QWORD PTR -24[rbp]
-	mov	rax, QWORD PTR -40[rbp]
-	mov	rsi, rdx
-	mov	rdi, rax
+	mov	rsi, QWORD PTR -24[rbp]
+	mov	rdi, QWORD PTR -40[rbp]
 	call	difftime@PLT
 	cvttsd2si	eax, xmm0
 	movsx	rdx, eax
@@ -181,8 +176,7 @@ main:
 	lea	rdi, .LC7[rip]
 	mov	eax, 0
 	call	printf@PLT
-	mov	eax, DWORD PTR -28[rbp]
-	mov	edi, eax
+	mov	edi, DWORD PTR -28[rbp]
 	call	task@PLT
 	lea	rdi, .LC8[rip]
 	mov	eax, 1
@@ -206,16 +200,14 @@ main:
 	cmp	eax, 217217217
 	jle	.L10
 .L9:
-	mov	eax, DWORD PTR -60[rbp]
-	mov	esi, eax
+	mov	esi, DWORD PTR -60[rbp]
 	lea	rdi, .LC10[rip]
 	mov	eax, 0
 	call	printf@PLT
 	mov	eax, 0
 	jmp	.L11
 .L10:
-	mov	eax, DWORD PTR -60[rbp]
-	mov	edi, eax
+	mov	edi, DWORD PTR -60[rbp]
 	call	task@PLT
 	lea	rdi, .LC11[rip]
 	mov	eax, 1

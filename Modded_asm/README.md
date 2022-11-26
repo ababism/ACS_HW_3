@@ -52,15 +52,86 @@ movsd	xmm7, xmm0
 ``` assembly
 movsd	xmm7, xmm8
 ```
-**task.s**
+**main.s**
+145:
 ``` assembly
-mov	rdx, QWORD PTR -16[rbp]
-mov	rax, QWORD PTR -8[rbp]
-mov	rsi, rdx
-mov	rdi, rax
+mov	rax, QWORD PTR [rax]
+	mov	rdi, rax
 ```
 ** Стало **
 ``` assembly
-mov	rsi, QWORD PTR -16[rbp]
-mov	rdi, QWORD PTR -8[rbp]
+mov	rdi, QWORD PTR [rax]
+```
+
+149:
+``` assembly
+mov	eax, DWORD PTR -28[rbp]
+mov	esi, eax
+```
+** Стало **
+``` assembly
+mov	esi, DWORD PTR -28[rbp]
+```
+
+156:
+``` assembly
+mov	eax, DWORD PTR -28[rbp]
+mov	edi, eax
+```
+** Стало **
+``` assembly
+mov	edi, DWORD PTR -28[rbp]
+```
+
+163:
+``` assembly
+mov	QWORD PTR -40[rbp], rax
+	mov	rdx, QWORD PTR -24[rbp]
+	mov	rax, QWORD PTR -40[rbp]
+	mov	rsi, rdx
+	mov	rdi, rax
+```
+** Стало **
+``` assembly
+mov	QWORD PTR -40[rbp], rax
+	mov	QWORD PTR -40[rbp], rax
+	mov	rsi, QWORD PTR -24[rbp]
+	mov	rdi, QWORD PTR -40[rbp]
+```
+179:
+``` assembly
+mov	eax, DWORD PTR -28[rbp]
+mov	edi, eax
+```
+** Стало **
+``` assembly
+mov	edi, DWORD PTR -28[rbp]
+```
+179:
+``` assembly
+mov	eax, DWORD PTR -28[rbp]
+mov	edi, eax
+```
+** Стало **
+``` assembly
+mov	edi, DWORD PTR -28[rbp]
+```
+
+203:
+``` assembly
+mov	eax, DWORD PTR -60[rbp]
+mov	esi, eax
+```
+** Стало **
+``` assembly
+mov	esi, DWORD PTR -60[rbp]
+```
+210:
+``` assembly
+mov	eax, DWORD PTR -60[rbp]
+mov	edi, eax
+```
+** Стало **
+``` assembly
+mov	edi, DWORD PTR -60[rbp]
 ```
