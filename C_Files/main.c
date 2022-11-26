@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     if (argc == 3 && argv[1][0] == ':') {
         srand(clock());
         input_number = rand() % MAX_NUM;
-        printf("Generated number: %d; answer in file", input_number);
+        printf("Generated number: %d; answer in output file", input_number);
         FILE *output_stream = fopen(argv[2], "w");
         fprintf(output_stream, "%.9lf", task(input_number));
         fclose(output_stream);
