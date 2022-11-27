@@ -168,7 +168,6 @@ main:
 	jle	.L8
 	call	clock@PLT	# clock()
 	mov	QWORD PTR -40[rbp], rax	#  time_t t_end = clock(): -40
-# ./main.c:47:         printf("Time: %d ms\n", (int) (difftime(t_end, t_start)) / 1000);
 	mov	rdx, QWORD PTR -24[rbp]	# rdx, t_start
 	mov	rax, QWORD PTR -40[rbp]	# rax, t_end
 	mov	rsi, rdx	# t_start second arg of difftime()
