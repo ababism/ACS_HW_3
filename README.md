@@ -46,6 +46,7 @@
 
 **✔ [Не модифицированный код на Assembly с комментариями](https://github.com/ababism/ACS_HW_3/tree/main/Commented_asm)**
 Сборка согласно семинарам, другие варианты сборки в задании на 9
+
 <img width="581" alt="image" src="https://user-images.githubusercontent.com/111705295/204144467-3294c8f9-fbeb-4c74-9771-5a7e5d357724.png">
 
 **✔ [Модифицированный код на Assembly (убраны макросы)](https://github.com/ababism/ACS_HW_3/tree/main/Modded_asm)**
@@ -125,7 +126,9 @@
 ## Задание на 9 баллов:
 **✔ Отмечено и сделано в тестах**
 * [Тесты](https://github.com/ababism/ACS_HW_3/tree/main/Tests)
-Используем опции -O0 -O1 -O2 -O3 -Os -Ofast и другие, все они есть в таблице и приложении под ней. Продублирую сюда итог:
+Используем опции -O0 -O1 -O2 -O3 -Os -Ofast и другие, все они есть в таблице и приложении под ней. Испаолняемые и ams файлы лежат в папке [asm_optimizations](https://github.com/ababism/ACS_HW_3/tree/main/asm_optimizations)
+
+Продублирую сюда итог:
 
 ### Итог:
 
