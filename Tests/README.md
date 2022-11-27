@@ -32,9 +32,10 @@
 
 ----
 # 7 баллов
-Файлы
-<img width="917" alt="image" src="https://user-images.githubusercontent.com/111705295/201546722-5662fe20-f0a3-484a-95e7-645931654e69.png">
-<img width="1066" alt="image" src="https://user-images.githubusercontent.com/111705295/201544956-7c069cb1-bd1f-464c-b3fc-d74e2d0501d7.png">
+## [3 пары файлов для тестов](https://github.com/ababism/ACS_HW_3/tree/main/Files_for_test)
+### Тесты с ними:
+<img width="1044" alt="image" src="https://user-images.githubusercontent.com/111705295/204135060-c2fac778-abe1-49e0-99ca-0223c2d23266.png">
+
  # 8 и 9 баллов
  
 > Первый тест: размер 200, 20 млн отработок функции task. <br/>
