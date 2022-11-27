@@ -135,3 +135,5 @@ mov	edi, eax
 ``` assembly
 mov	edi, DWORD PTR -60[rbp]
 ```
+Красиво показана часть изменений:
+<img width="1064" alt="image" src="https://user-images.githubusercontent.com/111705295/204145526-7a9e9b8a-6a6c-4994-aee1-c20260754678.png">
