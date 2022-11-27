@@ -69,9 +69,9 @@
 
 >Проверялось с помощью program.exe 217217217 вот все компиляции
 > <img width="604" alt="image" src="https://user-images.githubusercontent.com/111705295/204143169-ab61e775-b0ab-489c-8398-4fedf0c73f08.png">
-<img width="579" alt="image" src="https://user-images.githubusercontent.com/111705295/204143191-f48bf1c7-0145-42c8-8549-9950617256b5.png">
-<img width="583" alt="image" src="https://user-images.githubusercontent.com/111705295/204143223-5fe0c256-28ef-4ae6-abd2-1cc2cf1e2e88.png">
-<img width="699" alt="image" src="https://user-images.githubusercontent.com/111705295/204143250-47f8e8e2-fef5-4561-a63a-1956655f6750.png">
-<img width="697" alt="image" src="https://user-images.githubusercontent.com/111705295/204143270-68f43d77-9462-4c19-a0b0-47d50c5cff74.png">
-<img width="580" alt="image" src="https://user-images.githubusercontent.com/111705295/204143297-f5c67ac7-6945-4085-ab67-c948a6cc5539.png">
+> <img width="579" alt="image" src="https://user-images.githubusercontent.com/111705295/204143191-f48bf1c7-0145-42c8-8549-9950617256b5.png">
+> <img width="583" alt="image" src="https://user-images.githubusercontent.com/111705295/204143223-5fe0c256-28ef-4ae6-abd2-1cc2cf1e2e88.png">
+> <img width="699" alt="image" src="https://user-images.githubusercontent.com/111705295/204143250-47f8e8e2-fef5-4561-a63a-1956655f6750.png">
+> <img width="697" alt="image" src="https://user-images.githubusercontent.com/111705295/204143270-68f43d77-9462-4c19-a0b0-47d50c5cff74.png">
+> <img width="580" alt="image" src="https://user-images.githubusercontent.com/111705295/204143297-f5c67ac7-6945-4085-ab67-c948a6cc5539.png">
 
