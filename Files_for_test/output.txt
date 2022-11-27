@@ -1,2 +1,0 @@
-This Strings, should be _reversed_
- 
