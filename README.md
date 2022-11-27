@@ -46,7 +46,7 @@
 
 **✔ [Не модифицированный код на Assembly с комментариями](https://github.com/ababism/ACS_HW_3/tree/main/Commented_asm)**
 Сборка согласно семинарам, другие варианты сборки в задании на 9
-<img width="537" alt="image" src="https://user-images.githubusercontent.com/111705295/201545529-32bea517-8dd2-4c26-bb94-c271002d2e0a.png">
+<img width="581" alt="image" src="https://user-images.githubusercontent.com/111705295/204144467-3294c8f9-fbeb-4c74-9771-5a7e5d357724.png">
 
 **✔ [Модифицированный код на Assembly (убраны макросы)](https://github.com/ababism/ACS_HW_3/tree/main/Modded_asm)**
 Изменения подробнее написаны в README
@@ -113,7 +113,7 @@
 **✔ [Модифицированный код на ассемблере, содержащий генератор случайных значений и выбор типа ввода](https://github.com/ababism/ACS_HW_3/tree/main/Modded_asm)**
 
 
-**✔ Тестирование автоматически сгенерированных данных с замером времени**
+**✔ Тестирование данных с замером времени**
 * [Тесты](https://github.com/ababism/ACS_HW_3/tree/main/Tests)
 Здесь таймер и подробно время и размер для всех трех программ
 
